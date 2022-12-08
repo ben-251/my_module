@@ -13,7 +13,9 @@ def no_spaces(array_input):
 	'''
 	finds the number of no_spaces that each title should have
 	'''
-	#loop through the array, and for each title, find the number of spaces needed to balanc out such that the longest title has a space of 1 before the next
+	# loop through the array, and for each title, find the number
+	# of spaces needed to balanc out such that the longest title 
+	# has a space of 1 before the next
 	num = [0]*len(array_input)
 	max = longest(array_input)
 	for counter in range((len(array_input))):
