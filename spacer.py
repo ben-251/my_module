@@ -28,6 +28,7 @@ class Iterable:
 		#
 		# then check the ends of the next iterable and repeat
 		self.longest_string_length = max(map(len, self.iterable))
+		
 		for index,string in enumerate(self.iterable):
 			string_object = Iter_item(string)
 			string_object.spacing  = self.get_spacing(string_object)
@@ -76,24 +77,20 @@ def create_output_string(iter1,iter2):
 			
 	return output
 
+def remove_new_lines(string_list):
+	new_string_list = []
+	new_string = ""
+	for string in string_list:
+		for char in string:
+			if char != "\n":
+				new_string += char
+		new_string_list.append(new_string)
+		new_string = ""
+	return new_string_list
 
-def main():
-	list1 = [
-		"this",
-		"that",
-		"this and that and everything in between",
-		"."
-	]
-
-	list2 = [
-		"th",
-		"are",
-		"benji",
-		".",
-		"asd"
-	]
-	print(space(list1, list2))
-	print(space_multiple([list1,list2]))
-
-if __name__ == "__main__":
-	main()
+def get_iter_from_file(filename):
+	with open(filename) as f:
+		content = f.read()
+		content = content.split(',,')
+		content = remove_new_lines(content)
+	return content
