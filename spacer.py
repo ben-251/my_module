@@ -1,3 +1,5 @@
+import copy
+
 class Iter_item:
 	string = ""
 	spacing = 0
@@ -38,8 +40,15 @@ class Iterable:
 		max_spacing = self.longest_string_length + self.margin
 		spacing = max_spacing - len(string_object.string)
 		return spacing
-		
+
+def convert_to_strings(iterable):
+	new_iterable = []
+	for index,item in enumerate(iterable):
+		new_iterable.append(str(item))
+	return new_iterable
+
 def space(iterable1,iterable2):
+	iterable1, iterable2 = map(convert_to_strings,[iterable1,iterable2])
 	iter1 = Iterable(iterable1)
 	iter2 = Iterable(iterable2)
 
@@ -91,6 +100,6 @@ def remove_new_lines(string_list):
 def get_iter_from_file(filename):
 	with open(filename) as f:
 		content = f.read()
-		content = content.split(',,')
+		content = content.split(',')
 		content = remove_new_lines(content)
 	return content
